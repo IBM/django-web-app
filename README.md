@@ -1,92 +1,91 @@
-## djangowebapp
+<p align="center">
+    <a href="http://kitura.io/">
+        <img src="https://landscape.cncf.io/logos/ibm-cloud.svg" height="100" alt="IBM Cloud">
+    </a>
+</p>
 
-Basic Web project with Python with Django
 
-[![](https://img.shields.io/badge/IBM%20Cloud-powered-blue.svg)](https://bluemix.net)
-![Platform](https://img.shields.io/badge/platform-DJANGO-lightgrey.svg?style=flat)
+<p align="center">
+    <a href="https://cloud.ibm.com">
+    <img src="https://img.shields.io/badge/IBM%20Cloud-powered-blue.svg" alt="IBM Cloud">
+    </a>
+    <img src="https://img.shields.io/badge/platform-django-lightgrey.svg?style=flat" alt="platform">
+    <img src="https://img.shields.io/badge/license-Apache2-blue.svg?style=flat" alt="Apache 2">
+</p>
 
-### Table of Contents
-* [Summary](#summary)
-* [Requirements](#requirements)
-* [Configuration](#configuration)
-* [Run](#run)
-* [Debug](#debug)
 
-<a name="summary"></a>
-### Summary
-The Web basic starter contains an opinionated set of files for web serving:
+# Create and deploy a Django web application
+
+> We have similar applications available for [Go](https://github.com/IBM/go-web-app), [Java Spring](https://github.com/IBM/spring-web-app), [Swift](https://github.com/IBM/swift-web-app), [Node](https://github.com/IBM/nodejs-web-app), [Python Flask](https://github.com/IBM/flask-web-app), and [Java Liberty](https://github.com/IBM/java-liberty-web-app).
+
+In this sample application, you will create a web application using Django to serve web pages in Python, complete with standard best practices, including a health check.
+
+This app contains an opinionated set of files for web serving:
 
 - `app/templates/index.html`
 - `staticfiles/js/bundle.js`
 - `staticfiles/css/default.css`
 
 
+## Steps
 
-<a name="enablement"></a>
-### IBM Cloud Enablement
+You can [deploy this application to IBM Cloud](https://cloud.ibm.com/developer/appservice/starter-kits/5c392271-75bf-38ab-9ba8-ea918f110fb0/nodejs-web-app-with-expressjs) or [build it locally](#building-locally) by cloning this repo first.  Once your app is live, you can access the `/health` endpoint to build out your cloud native application.
 
-<a name="requirements"></a>
-### Requirements
-#### Local Development Tools Setup (optional)
+### Deploying to IBM Cloud
 
-- If you don't already have it, install [Python](https://www.python.org/downloads/)
+<p align="center">
+    <a href="https://cloud.ibm.com/developer/appservice/starter-kits/5c392271-75bf-38ab-9ba8-ea918f110fb0/nodejs-web-app-with-expressjs">
+    <img src="https://cloud.ibm.com/devops/setup/deploy/button_x2.png" alt="Deploy to IBM Cloud">
+    </a>
+</p>
 
-#### IBM Cloud development tools setup (optional)
-
-1. Install [IBM Cloud Developer Tools](https://console.bluemix.net/docs/cli/idt/setting_up_idt.html#add-cli) on your machine  
-2. Install the plugin with: `bx plugin install dev -r bluemix`
-
-
-#### IBM Cloud DevOps setup (optional)
-
-[![Create Toolchain](https://console.ng.bluemix.net/devops/graphics/create_toolchain_button.png)](https://console.ng.bluemix.net/devops/setup/deploy/)
-
-[IBM Cloud DevOps](https://www.ibm.com/cloud-computing/bluemix/devops) services provides toolchains as a set of tool integrations that support development, deployment, and operations tasks inside IBM Cloud. The "Create Toolchain" button creates a DevOps toolchain and acts as a single-click deploy to IBM Cloud including provisioning all required services. 
-
-***Note** you must publish your project to [Github](https://github.com/) for this to work.
+Use the button above to deploy this same application to IBM Cloud.  This option will create a deployment pipeline, complete with a hosted Git lab project and devops toolchain.  You will have the option of deploying to either CloudFoundry or a Kubernetes cluster. [IBM Cloud DevOps](https://www.ibm.com/cloud-computing/bluemix/devops) services provides toolchains as a set of tool integrations that support development, deployment, and operations tasks inside IBM Cloud. 
 
 
+### Building Locally
 
-<a name="configuration"></a>
-### Configuration
+To get started building this application locally, you can either run the application natively or use the IBM Cloud Developer Tools for containerization and easy deployment to IBM Cloud.
 
-The project contains IBM Cloud specific files that are used to deploy the application as part of an IBM Cloud DevOps flow. The `.bluemix` directory contains files used to define the IBM Cloud toolchain and pipeline for your application. The `manifest.yml` file specifies the name of your application in IBM Cloud, the timeout value during deployment, and which services to bind to.
+#### Native Application Development
 
-Credentials are either taken from the VCAP_SERVICES environment variable if in IBM Cloud, or from a config file if running locally. 
+...
 
+Your application will be running at `http://localhost:3000`.  You can access the `/health` endpoint at the host.
 
-<a name="run"></a>
-### Run
-#### Using IBM Cloud development CLI
-The IBM Cloud development plugin makes it easy to compile and run your application if you do not have all of the tools installed on your computer yet. Your application will be compiled with Docker containers. To compile and run your app, run:
-
-```bash
-bx dev build
-bx dev run
-```
-
-
-#### Using your local development environment
-
-
-
-##### Endpoints
-
-Your application is running at: `http://localhost:3000/` in your browser.
-
-- Health endpoint: `/health`
-
-
-
-<a name="debug"></a>
-### Debug
-
-#### Using IBM Cloud development CLI
-To build and debug your app, run:
-```bash
-bx dev build --debug
-bx dev debug
-```
-#### Using your local development environment
+##### Debugging locally
 To debug a `django` project run `python manage.py runserver` with DEBUG set to True in settings.py to start a native django development server. This comes with the Django's stack-trace debugger, which will present runtime failure stack-traces. For more information, see [Django's documentation](https://docs.djangoproject.com/en/2.0/ref/settings/).
 
+#### IBM Cloud Developer Tools
+
+Install [IBM Cloud Developer Tools](https://cloud.ibm.com/docs/cli/index.html#overview) on your machine by using the following installation command: `curl -sL https://ibm.biz/idt-installer | bash`.
+
+Your application will be compiled with Docker containers. To compile and run your app, run:
+
+```bash
+ibmcloud dev build
+ibmcloud dev run
+```
+
+This will launch your application locally.  When you are ready to deploy to IBM Cloud on CloudFoundry or Kubernetes, run one of the commands below:
+
+```bash
+ibmcloud dev deploy -t buildpack
+ibmcloud dev deploy -t container
+```
+
+You can build and debug your app locally with:
+
+```bash
+ibmcloud dev build --debug
+ibmcloud dev debug
+```
+
+## Next Steps
+* Learn more about [IBM Cloud](https://cloud.ibm.com) and how to incorporate its services in your application.
+* Explore other [sample applications](https://cloud.ibm.com/developer/appservice/starter-kits) on IBM Cloud.
+
+## License
+
+This sample application is licensed under the Apache License, Version 2. Separate third-party code objects invoked within this code pattern are licensed by their respective providers pursuant to their own separate licenses. Contributions are subject to the [Developer Certificate of Origin, Version 1.1](https://developercertificate.org/) and the [Apache License, Version 2](https://www.apache.org/licenses/LICENSE-2.0.txt).
+
+[Apache License FAQ](https://www.apache.org/foundation/license-faq.html#WhatDoesItMEAN)
