@@ -48,7 +48,12 @@ To get started building this application locally, you can either run the applica
 
 #### Native Application Development
 
-...
+* Install [Python](https://www.python.org/downloads/)
+ 
+Running Django applications has been simplified with a `manage.py` file to avoid dealing with configuring environment variables to run your app.  From your project root, run your application with the following:
+```bash
+python manage.py [ipaddress]
+```
 
 Your application will be running at `http://localhost:3000`.  You can access the `/health` endpoint at the host.
 
