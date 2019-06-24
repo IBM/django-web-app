@@ -13,7 +13,7 @@
     <img src="https://img.shields.io/badge/license-Apache2-blue.svg?style=flat" alt="Apache 2">
 </p>
 
-
+ 
 # Create and deploy a Django web application
 
 > We have similar applications available for [Go](https://github.com/IBM/go-web-app), [Java Spring](https://github.com/IBM/spring-web-app), [Swift](https://github.com/IBM/swift-web-app), [Node](https://github.com/IBM/nodejs-web-app), [Python Flask](https://github.com/IBM/flask-web-app), and [Java Liberty](https://github.com/IBM/java-liberty-web-app).
