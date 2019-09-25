@@ -48,9 +48,16 @@ To get started building this application locally, you can either run the applica
 
 * Install [Python](https://www.python.org/downloads/)
  
-Running Django applications has been simplified with a `manage.py` file to avoid dealing with configuring environment variables to run your app. From your project root, run your application with the following:
+Running Django applications has been simplified with a `manage.py` file to avoid dealing with configuring environment variables to run your app. From your project root, you can download the project dependencies with:
+
 ```bash
-python manage.py [ipaddress]
+pip install -r requirements.txt
+```
+
+To run your application locally:
+
+```bash
+python manage.py start
 ```
 
 Your application will be running at `http://localhost:3000`.  You can access the `/health` endpoint at the host.
@@ -65,6 +72,14 @@ Install [IBM Cloud Developer Tools](https://cloud.ibm.com/docs/cli?topic=cloud-c
 curl -sL https://ibm.biz/idt-installer | bash
 ```
 
+Create an application on IBM Cloud by running:
+
+```bash
+ibmcloud dev create
+```
+
+This will create and download a starter application with the necessary files needed for local development and deployment.
+
 Your application will be compiled with Docker containers. To compile and run your app, run:
 
 ```bash
@@ -72,11 +87,11 @@ ibmcloud dev build
 ibmcloud dev run
 ```
 
-This will launch your application locally. When you are ready to deploy to IBM Cloud on Cloud Foundry or Kubernetes, run one of the following commands:
+This will launch your application locally. When you are ready to deploy to IBM Cloud on Cloud Foundry or Kubernetes, run one of the commands:
 
 ```bash
-ibmcloud dev deploy -t buildpack
-ibmcloud dev deploy -t container
+ibmcloud dev deploy -t buildpack // to Cloud Foundry
+ibmcloud dev deploy -t container // to K8s cluster
 ```
 
 You can build and debug your app locally with:
