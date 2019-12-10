@@ -1,14 +1,18 @@
-FROM python:3.6-alpine
+FROM registry.access.redhat.com/ubi8/python-36
 
 WORKDIR /app
 
 COPY requirements.txt /tmp/requirements.txt
-RUN apk --update add python py-pip openssl ca-certificates py-openssl wget bash linux-headers
-RUN apk --update add --virtual build-dependencies libffi-dev openssl-dev python-dev py-pip build-base \
-  && pip install --upgrade pip \
+
+## NOTE - rhel enforces user container permissions stronger ##
+USER root
+RUN yum install python3-pip wget
+
+RUN pip install --upgrade pip \
   && pip install --upgrade pipenv\
-  && pip install --upgrade -r /tmp/requirements.txt\
-  && apk del build-dependencies
+  && pip install --upgrade -r /tmp/requirements.txt
+
+USER 1001
 
 COPY . /app
-CMD ["gunicorn", "-b", "0.0.0.0:3000", "--env", "DJANGO_SETTINGS_MODULE=djangowebapp.settings.production", "djangowebapp.wsgi", "--timeout 120"]
+CMD ["gunicorn", "-b", "0.0.0.0:3000", "--env", "DJANGO_SETTINGS_MODULE=pythondjangoapp.settings.production", "pythondjangoapp.wsgi", "--timeout 120"]
