@@ -12,3 +12,4 @@ RUN apk --update add --virtual build-dependencies libffi-dev openssl-dev python-
 
 COPY . /app
 CMD ["gunicorn", "-b", "0.0.0.0:3000", "--env", "DJANGO_SETTINGS_MODULE=djangowebapp.settings.production", "djangowebapp.wsgi", "--timeout 120"]
+
